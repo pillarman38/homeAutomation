@@ -1,0 +1,19 @@
+#!/bin/bash
+tar=$(sudo iwlist wlan0 scan | grep 'ESSID')
+arr=()
+for i in $tar; do
+  arr+=("$i")
+done 
+
+json_array() {
+  echo -n '['
+  while [ $# -gt 0 ]; do
+    x=${1//\\/\\\\}
+    echo  -n '{' ${x//"/\\"}
+    [ $# -gt 1 ] && echo -n '}, '
+    shift
+  done
+  echo '}]'
+}
+
+json_array "${arr[@]}"

@@ -12,9 +12,9 @@ app.use(express.static(__dirname + '/dist/homeAutomation'))
 
 app.use(cors())
 
-// let userRoutes = require('./server/routes/movies.routes')
+let userRoutes = require('./server/routes/portal.routes')
 
-// app.use('/api/automation', userRoutes)
+app.use('/api/homeAuto', userRoutes)
 
 app.get('*', (req, res) => {
     res.sendFile('/dist/homeAutomation/index.html', {root: __dirname})
